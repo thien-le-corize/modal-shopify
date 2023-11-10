@@ -2,15 +2,19 @@ function checkConditionDisplay(idPopup) {
   var mainPopup = document.getElementById("boxModalMessageID-" + idPopup);
   if (mainPopup) {
     var dataSeconds = parseInt(mainPopup.getAttribute("data-seconds")) * 1000;
-    var dataSessions = mainPopup.getAttribute("data-sessions");
-    var dataTimes = mainPopup.getAttribute("data-times");
+    var dataSessions = parseInt(mainPopup.getAttribute("data-sessions"));
+    var dataTimes = parseInt(mainPopup.getAttribute("data-times"));
 
-    if (shouldShowPopupByDay(dataTimes, idPopup) && dataTimes != 0) {
-      openPopup(idPopup);
+    if (dataTimes != 0) {
+      if (shouldShowPopupByDay(dataTimes, idPopup)) {
+        openPopup(idPopup);
+      }
     }
 
-    if (shouldShowPopupBySessions(dataSessions, idPopup) && dataSessions != 0) {
-      openPopup(idPopup);
+    if (dataSessions != 0) {
+      if (shouldShowPopupBySessions(dataSessions, idPopup)) {
+        openPopup(idPopup);
+      }
     }
 
     if (dataSeconds != 0) {
