@@ -1,0 +1,529 @@
+<!-- Welcome section starts -->
+{% if section.settings.chosen-display-button-click != false %}
+    <section
+      class="box-message-popup {% if section.settings.chosen-button-fixed-click != false %} position-align-{{  section.settings.position-fixed-button }} {% endif %}"
+      id="boxID-{{ section.id }}"
+      data-idpop="{{ section.id }}"
+    >
+      <button style="background: {{ section.settings.color_button-pop }}; padding: {{ section.settings.padding-button-click }}px; border-radius: {{ section.settings.border-radius-button-click }}px">
+        <h3 style="color: {{ section.settings.color_text-button-pop }}">
+          {{ section.settings.section-text-button-popup }}
+        </h3>
+      </button>
+    </section>
+  {% endif %}
+  <section
+    class="modal-message-popup welcome"
+    id="boxModalMessageID-{{ section.id }}"
+    data-idpop="{{ section.id }}"
+    data-times=""
+    {% if section.settings.display_popup_days != false %}
+      {{- section.settings.show_to_x_day -}}
+    {% else %}
+      0
+    {% endif %}
+    data-seconds=""
+    {% if section.settings.display_popup_seconds != false %}
+      {{- section.settings.show_to_x_seconds -}}
+    {% else %}
+      0
+    {% endif %}
+    data-sessions=""
+    {% if section.settings.display_popup_sessions != false %}
+      {{- section.settings.show_to_x_sessions -}}
+    {% else %}
+      0
+    {% endif %}
+  >
+    <div class="popup-overlay-modal modal-overlay" data-idpop="{{ section.id }}"></div>
+    <div class="modal-container" style="width: {{ section.settings.width_modal_popup }}px">
+      <div class="modal-close popup-close-modal" data-idpop="{{ section.id }}">
+        <span>
+          <svg
+            aria-hidden="true"
+            focusable="false"
+            width="12"
+            height="12"
+            viewBox="0 0 12 12"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M7.41401 6.00012L11.707 1.70721C12.098 1.31622 12.098 0.684236 11.707 0.293244C11.316 -0.097748 10.684 -0.097748 10.293 0.293244L6.00001 4.58615L1.70701 0.293244C1.31601 -0.097748 0.684006 -0.097748 0.293006 0.293244C-0.0979941 0.684236 -0.0979941 1.31622 0.293006 1.70721L4.58601 6.00012L0.293006 10.293C-0.0979941 10.684 -0.0979941 11.316 0.293006 11.707C0.488006 11.902 0.744006 12 1.00001 12C1.25601 12 1.51201 11.902 1.70701 11.707L6.00001 7.4141L10.293 11.707C10.488 11.902 10.744 12 11 12C11.256 12 11.512 11.902 11.707 11.707C12.098 11.316 12.098 10.684 11.707 10.293L7.41401 6.00012Z"></path>
+          </svg>
+        </span>
+      </div>
+      <div
+        class="image-outer"
+        style="width: {{ section.settings.width_image }}%; height: {{ section.settings.height_box_image }}px; order: {{ section.settings.position_image_textbox }}"
+      >
+        {% if section.settings.modal_image != blank %}
+          <img
+            src="{{ section.settings.modal_image | image_url }}"
+            width="300"
+            height="100"
+          >
+        {% else %}
+           <img
+            src="https://enviromentdev.tech/shopify/image/image-default.png"
+            width="300"
+            height="100"
+          >
+        {% endif %}
+      </div>
+      <div
+        class="welcome-outter"
+        style="background: {{ section.settings.background-box-text }}; width: {{ section.settings.width_textbox }}%"
+      >
+        {%- for block in section.blocks -%}
+          {% case block.type -%}{%- when 'heading' -%}<div
+                class="section-heading image-with-text__heading inline-richtext"
+              >
+                <h2 style="text-align: {{ block.settings.align_heading }}; font-weight: {{ block.settings.font-weight-heading }}; font-size: {{ block.settings.font-size-heading }}px; color: {{ block.settings.color-heading-box }}">{{ block.settings.title-popup-message }}</h2>
+              </div>{%- when 'text' -%}<div
+                class="image-with-text__text rte discription"
+                style="color: {{ block.settings.color-caption-box }}; font-size: {{ block.settings.font-size-caption-deskop }}"
+              >
+                <p>{{ block.settings.caption-popup-message }}</p>
+              </div>{%- when 'button' -%}{%- if block.settings.button_label != blank -%}
+                <button
+                  class="view-btn align-button-{{ block.settings.align_button_popup }}"
+                  style="background: {{ block.settings.background-button-popup }}; width: {{ block.settings.width-button-deskop }}%; padding: {{ block.settings.padding-button }}px; border-radius: {{ block.settings.border-radius-button }}px"
+                >
+                  <a
+                    {% if block.settings.button_link == blank %}
+                      role="link"
+                      aria-disabled="true"
+                    {% else %}
+                      href="{{ block.settings.button_link }}"
+                    {% endif %}
+                    style="color: {{ block.settings.color-text-button-popup }}; font-size: {{ block.settings.font-size-button-deskop }}"
+                  >
+                    {{ block.settings.button_label | escape }}
+                  </a>
+                </button>
+              {%- endif -%}
+          {%- endcase -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </section>
+  
+  {%- style -%}
+    @media screen and (max-width: 600px) {
+  
+        #boxModalMessageID-{{ section.id }} .modal-container {
+          width: {{ section.settings.width_modal_popup_mobile }}% !important;
+        }
+  
+        #boxModalMessageID-{{ section.id }} .image-outer {
+          width: {{ section.settings.width_image_mobile }}% !important;
+          height: {{ section.settings.height_box_image_mobile }}px !important;
+        }
+  
+        #boxModalMessageID-{{ section.id }} .welcome-outter {
+          width: {{ section.settings.width_textbox_mobile }}% !important;
+        }
+  
+        #boxModalMessageID-{{ section.id }} .welcome-outter {
+          width: {{ section.settings.width_textbox_mobile }}% !important;
+        }
+  
+        #boxModalMessageID-{{ section.id }} .view-btn{
+          width: {{ section.settings.width-button-mobile }}% !important;
+          padding: {{ section.settings.padding-button-mobile }} !important
+        }
+  
+    }
+  {%- endstyle -%}
+  <!-- Welcome section ends -->
+  <!-- Welcome section ends -->
+  {% schema %}
+  {
+    "name": "Modal popup messages",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Timing Settings"
+      },
+      {
+        "type": "checkbox",
+        "id": "display_popup_sessions",
+        "label": "Chosen display popup by sessions",
+        "default": false
+      },
+      {
+        "type": "number",
+        "id": "show_to_x_sessions",
+        "label": "Show up to X sessions",
+        "default": 1
+      },
+      {
+        "type": "checkbox",
+        "id": "display_popup_seconds",
+        "label": "Chosen display popup by seconds",
+        "default": false
+      }, {
+        "type": "number",
+        "id": "show_to_x_seconds",
+        "label": "Show up to X seconds",
+        "default": 2000
+      }, {
+        "type": "checkbox",
+        "id": "display_popup_days",
+        "label": "Chosen display popup by days",
+        "default": false
+      }, {
+        "type": "number",
+        "id": "show_to_x_day",
+        "label": "Show up to X days",
+        "default": 7
+      }, {
+        "type": "header",
+        "content": "General Settings"
+      },
+      {
+        "type": "range",
+        "id": "width_modal_popup",
+        "min": 0,
+        "max": 5000,
+        "unit": "px",
+        "step": 50,
+        "label": "Width modal popup",
+        "default": 500
+      },
+      {
+        "type": "select",
+        "id": "position_image_textbox",
+        "options": [
+          {
+            "value": "0",
+            "label": "left"
+          }, {
+            "value": "1",
+            "label": "right"
+          }
+        ],
+        "default": "0",
+        "label": "Position Images and Textbox"
+      }, {
+        "type": "range",
+        "id": "width_image",
+        "min": 0,
+        "max": 100,
+        "unit": "%",
+        "label": "Width Box Image",
+        "default": 50
+      }, {
+        "type": "range",
+        "id": "width_textbox",
+        "min": 0,
+        "max": 100,
+        "unit": "%",
+        "label": "Width Box Text",
+        "default": 50
+      }, {
+        "type": "color",
+        "id": "background-box-text",
+        "label": "Background box text popup",
+        "default": "#FFFFFF"
+      }, {
+        "type": "header",
+        "content": "Box Image Settings"
+      }, {
+        "type": "image_picker",
+        "label": "Modal Image",
+        "id": "modal_image"
+      },
+      {
+        "type": "range",
+        "id": "height_box_image",
+        "min": 0,
+        "max": 1000,
+        "step": 50,
+        "unit": "px",
+        "label": "Height Box Image",
+        "default": 300
+      },
+      {
+        "type": "header",
+        "content": "Button click Settings"
+      },
+      {
+        "type": "checkbox",
+        "id": "chosen-display-button-click",
+        "label": "Chosen display button click",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "section-text-button-popup",
+        "label": "Text Button click",
+        "default": "Button Click Popup"
+      }, {
+        "type": "color",
+        "id": "color_button-pop",
+        "label": "Button color popup click",
+        "default": "#000"
+      }, {
+        "type": "color",
+        "id": "color_text-button-pop",
+        "label": "Button text color popup click",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "range",
+        "id": "padding-button-click",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding button",
+        "default": 20
+      },
+      {
+        "type": "range",
+        "id": "border-radius-button-click",
+        "min": 0,
+        "max": 50,
+        "step": 1,
+        "unit": "px",
+        "label": "Border radisu button",
+        "default": 20
+      },
+      {
+        "type": "checkbox",
+        "id": "chosen-button-fixed-click",
+        "label": "Chosen button click fixed",
+        "default": false
+      },
+      {
+        "type": "select",
+        "id": "position-fixed-button",
+        "options": [
+          {
+            "value": "left",
+            "label": "left"
+          }, {
+            "value": "right",
+            "label": "right"
+          }
+        ],
+        "default": "right",
+        "label": "Position fixed button"
+      },
+      {
+        "type": "header",
+        "content": "Mobile layout"
+      },
+      {
+        "type": "range",
+        "id": "width_modal_popup_mobile",
+        "min": 0,
+        "max": 100,
+        "unit": "%",
+        "step": 1,
+        "label": "Width modal popup",
+        "default": 95
+      },{
+        "type": "range",
+        "id": "width_image_mobile",
+        "min": 0,
+        "max": 100,
+        "unit": "%",
+        "label": "Width Box Image",
+        "default": 50
+      }, {
+        "type": "range",
+        "id": "width_textbox_mobile",
+        "min": 0,
+        "max": 100,
+        "unit": "%",
+        "label": "Width Box Text",
+        "default": 50
+      },
+      {
+        "type": "range",
+        "id": "height_box_image_mobile",
+        "min": 0,
+        "max": 1000,
+        "step": 50,
+        "unit": "px",
+        "label": "Height Box Image",
+        "default": 300
+      }
+    ],
+    "blocks": [
+      {
+        "type": "heading",
+        "name": "Heading popup messages",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "text",
+            "id": "title-popup-message",
+            "default": "Title popup message",
+            "label": "Title popup message"
+          }, {
+            "type": "color",
+            "id": "color-heading-box",
+            "label": "Color heading box popup",
+            "default": "#000"
+          },{
+        "type": "select",
+        "id": "font-weight-heading",
+        "options": [
+          {
+            "value": "400",
+            "label": "400"
+          },  {
+            "value": "500",
+            "label": "500"
+          },
+           {
+            "value": "600",
+            "label": "600"
+          },
+           {
+            "value": "700",
+            "label": "700"
+          }
+        ],
+        "default": "700",
+        "label": "Font weight heading"
+      },
+           {
+        "type": "range",
+        "id": "font-size-heading",
+        "min": 0,
+        "max": 60,
+        "step": 1,
+        "unit": "px",
+        "label": "Font size heading",
+        "default": 14
+      },{
+        "type": "select",
+        "id": "align_heading",
+        "options": [
+          {
+            "value": "left",
+            "label": "left"
+          },  {
+            "value": "center",
+            "label": "center"
+          },
+           {
+            "value": "right",
+            "label": "right"
+          }
+        ],
+        "default": "center",
+        "label": "Align heading"
+      }
+        ]
+      }, {
+        "type": "text",
+        "name": "Write Message popup",
+        "settings": [
+          {
+            "type": "text",
+            "id": "caption-popup-message",
+            "default": "Add a tagline",
+            "label": "Message popup"
+          }, {
+            "type": "color",
+            "id": "color-caption-box",
+            "label": "Color text box popup",
+            "default": "#000"
+          }
+        ]
+      }, {
+        "type": "button",
+        "name": "Button popup messages",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "text",
+            "id": "button_label",
+            "default": "Button label",
+            "label": "Button label"
+          }, {
+            "type": "url",
+            "id": "button_link",
+            "label": "Button link"
+          }, {
+            "type": "color",
+            "id": "color-text-button-popup",
+            "label": "Color text button",
+            "default": "#000"
+          }, {
+            "type": "color",
+            "id": "background-button-popup",
+            "label": "Background button",
+            "default": "#FFFFFF"
+          },
+          {
+        "type": "range",
+        "id": "border-radius-button",
+        "min": 0,
+        "max": 50,
+        "step": 1,
+        "unit": "px",
+        "label": "Border radius button",
+        "default": 10
+      },
+          {
+        "type": "range",
+        "id": "width-button-deskop",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "%",
+        "label": "Width button",
+        "default": 60
+      },
+          {
+        "type": "range",
+        "id": "padding-button",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding button",
+        "default": 20
+      }, {
+        "type": "select",
+        "id": "align_button_popup",
+        "options": [
+          {
+            "value": "left",
+            "label": "left"
+          }, {
+            "value": "center",
+            "label": "center"
+          }, {
+            "value": "right",
+            "label": "right"
+          }
+        ],
+        "default": "center",
+        "label": "Position Images and Textbox"
+      }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Modal Custom Corize",
+        "category": "ADVANCED LAYOUT",
+        "blocks": [
+          {
+            "type": "heading"
+          }, {
+            "type": "text"
+          }, {
+            "type": "button"
+          }
+        ]
+      }
+    ]
+  }
+  {% endschema %}

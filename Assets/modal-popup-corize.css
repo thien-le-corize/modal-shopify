@@ -1,0 +1,189 @@
+.box-message-popup {
+  position: relative;
+  z-index: 9;
+  cursor: pointer;
+  padding: 0 5rem;
+}
+.position-align-right {
+  position: fixed;
+  bottom: 20px;
+  right: 10px;
+}
+.position-align-left {
+  position: fixed;
+  bottom: 20px;
+  left: 10px;
+}
+.box-message-popup button {
+  all: unset;
+  display: grid;
+  grid-auto-flow: column;
+  align-items: center;
+  justify-content: space-between;
+  width: fit-content;
+  background-color: #0084cd;
+  cursor: pointer;
+  gap: 13px;
+  border-radius: 15px;
+  color: #fff;
+  padding: 15px 20px;
+}
+.box-message-popup h3 {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0px;
+}
+.modal-message-popup {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+.modal-overlay {
+  position: absolute;
+  display: block;
+  background-color: #0000007d;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  visibility: visible;
+  animation: 0.3s ease 0s 1 normal forwards running background_overlay_fade-in;
+  display: block !important;
+}
+.modal-container {
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.2), 0 10px 20px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  position: relative;
+  max-height: 90vh;
+  overflow-y: auto;
+  width: 800px;
+  background: #fff;
+  display: flex;
+  flex-wrap: wrap;
+  overflow-y: hidden;
+}
+.modal-container > div {
+  width: 50%;
+}
+.image-outer img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+.modal-container .section-large-heading {
+  font-size: 20px;
+}
+.fullOuter {
+  width: 100% !important;
+  max-height: 600px;
+  height: auto;
+}
+.welcome-outter {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
+.welcome-outter h1 {
+  text-align: center;
+}
+.welcome-outter .view-btn {
+  width: 100%;
+  padding: 20px;
+  background: #000;
+}
+.view-btn a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.welcome-outter .view-btn:hover {
+  background: #f5f5f5;
+}
+
+.welcome-outter .view-btn:hover a {
+  color: #000;
+}
+.welcome-outter h1,
+.welcome-outter h2 {
+  margin: 0px;
+}
+.modal-close {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  text-align: right;
+
+  width: 30px !important;
+}
+.modal-close span {
+  width: 100%;
+  height: 30px;
+  cursor: pointer;
+  border-radius: 50%;
+  display: block;
+  text-align: center;
+  font-weight: bold;
+  font-size: 22px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+.popup-open {
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: flex !important;
+}
+
+.align-button-left {
+  margin-right: auto;
+}
+.align-button-center {
+  margin: 0px auto;
+}
+.align-button-right {
+  margin-left: auto;
+}
+@keyframes background_overlay_fade-in {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+  }
+  100% {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+@media screen and (max-width: 600px) {
+  .box-message-popup {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  .modal-container {
+    width: 95%;
+  }
+  .modal-container > div {
+    width: 100%;
+  }
+  .image-outer {
+    height: 250px;
+  }
+  .box-message-popup button {
+    padding: 0px 10px;
+  }
+  .box-message-popup h3 {
+    font-size: 14px;
+  }
+}
