@@ -6,3 +6,5 @@ STEP 2: ADD FILES Assets/ to path /Assets in theme shopify
 STEP 3: ADD 2 URL ASSET TO theme.liquid before tag </body>
 {{ 'modal-popup-corize.css' | asset_url | stylesheet_tag }}
 <script src='{{ 'modal-popup-corize.js' | asset_url }}' defer='defer'></script>
+
+STEP 4: FINAL
