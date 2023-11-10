@@ -1,7 +1,7 @@
 function checkConditionDisplay(idPopup) {
   var mainPopup = document.getElementById("boxModalMessageID-" + idPopup);
   if (mainPopup) {
-    var dataSeconds = mainPopup.getAttribute("data-seconds") * 1000;
+    var dataSeconds = parseInt(mainPopup.getAttribute("data-seconds")) * 1000;
     var dataSessions = mainPopup.getAttribute("data-sessions");
     var dataTimes = mainPopup.getAttribute("data-times");
 
@@ -14,6 +14,7 @@ function checkConditionDisplay(idPopup) {
     }
 
     if (dataSeconds != 0) {
+      console.log(dataSeconds);
       setTimeout(function () {
         openPopup(idPopup);
       }, dataSeconds);
