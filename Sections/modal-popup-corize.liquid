@@ -68,7 +68,7 @@
               class="image-with-text__text rte discription"
               style="color: {{ block.settings.color-caption-box }};"
             >
-              <p style="font-size: {{ block.settings.font-size-caption }}">{{ block.settings['caption-popup-message'] }}</p>
+              <p style="font-size: {{ block.settings.font-size-caption }}px">{{ block.settings['caption-popup-message'] }}</p>
             </div>
           {%- when 'button' -%}
             {%- if block.settings.button_label != blank -%}
@@ -313,7 +313,7 @@
       "max": 50,
       "step": 1,
       "unit": "px",
-      "label": "Border radisu button",
+      "label": "Border radius button",
       "default": 20
     },
     {
