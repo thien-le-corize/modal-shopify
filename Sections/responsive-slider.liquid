@@ -1,0 +1,118 @@
+<script src="{{ 'swiper-element-bundle.min.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+  {
+    "name": "Responsive slider",
+    "tag": "section",
+    "class": "section",
+    "blocks": [
+      {
+        "type": "slide",
+        "name": "Slide",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "pc_image",
+            "label": "Upload Image for PC"
+          }, {
+            "type": "image_picker",
+            "id": "mobile_image",
+            "label": "Upload Image for Mobile"
+          }, {
+            "type": "text",
+            "id": "link_slide",
+            "label": "Link Slide"
+          }, {
+            "type": "checkbox",
+            "id": "open_link_new_tab",
+            "label": "Open link tab new",
+            "default": false
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Responsive slider"
+      }
+    ]
+  }
+{% endschema %}
+<div>
+  <swiper-container
+    class="responsive-slider responsive-slider-pc"
+    pagination="true"
+    navigation="true"
+    loop="true"
+    autoplay-delay="5000">
+    <!-- <div class="responsive-slider responsive-slider-pc"> -->
+    {% for block in section.blocks %}
+      <swiper-slide>
+        {% if block.settings.link_slide != blank %}
+          <a
+            href="{{ block.settings.link_slide }}"
+            {% if block.settings.open_link_new_tab %}
+            target="_blank"
+            {% endif %}>
+            {{ block.settings.pc_image | img_url: 'master' | img_tag }}
+          </a>
+        {% else %}
+          {{ block.settings.pc_image | img_url: 'master' | img_tag }}
+        {% endif %}
+      </swiper-slide>
+    {% endfor %}
+  <!-- </div> -->
+  </swiper-container>
+
+  <swiper-container
+    class="responsive-slider responsive-slider-mobile"
+    pagination="true"
+    loop="true"
+    autoplay-delay="5000">
+    {% for block in section.blocks %}
+      <swiper-slide>
+        {% if block.settings.link_slide != blank %}
+          <a
+            href="{{ block.settings.link_slide }}"
+            {% if block.settings.open_link_new_tab %}
+            target="_blank"
+            {% endif %}>
+            {{ block.settings.mobile_image | img_url: 'master' | img_tag }}
+          </a>
+        {% else %}
+          {{ block.settings.mobile_image | img_url: 'master' | img_tag }}
+        {% endif %}
+      </swiper-slide>
+    {% endfor %}
+  </swiper-container>
+</div>
+{% stylesheet %}
+  .responsive-slider img {
+    display: block;
+    max-width: 100%;
+  }
+  .responsive-slider-mobile {
+    display: none;
+  }
+
+  swiper-container::part(bullet-active) {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  swiper-container::part(button-next),
+  swiper-container::part(button-prev) {
+    color: rgba(0, 0, 0, 0.5);
+  }
+
+  @media screen and (max-width: 749px) {
+    .responsive-slider-pc {
+      display: none;
+    }
+    .responsive-slider-mobile {
+      display: block;
+    }
+  }
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
